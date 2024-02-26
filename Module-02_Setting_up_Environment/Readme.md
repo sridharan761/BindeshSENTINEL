@@ -1,4 +1,4 @@
-# Setup the Environment
+# Setup the environment for Microsoft Sentinel
 
 There are few pre-requisites for deploying Microsoft Sentinel:
 
