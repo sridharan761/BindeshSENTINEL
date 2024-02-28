@@ -59,7 +59,7 @@ Microsoft Sentinel Analytics provides an intelligent solution that you can use t
   - Duplicate
   - Delete
 
-### 04-Detect threats with Microsoft Sentinel analytics
+### Exercise-01 - Threat detection with Microsoft Sentinel analytics
 
 - **Task-01: Create a custom analytics rule**
   - Navigate to **Microsoft Sentinel** >> under Configuration, select **Analytics**.
