@@ -1,14 +1,22 @@
 # Respond to threats by using playbooks with automation rules in Microsoft Sentinel
 
-## Create Resource Group RG-01
+## Step-01: Create Resource Group `Sentinel-RG`
 
-## Create Log Analytics Workspace in RG-01
+- Navigate to Resource Group
+- Provide RG details:
+  - Name
+  - Subscription
+  - Region
+  - Tags
+- Click "Review and Create" button
 
-## Create Sentinel Workspace in RG-01
+## Step-02: Create Log Analytics Workspace in `Sentinel-RG`
 
-## Install Data Connectors (Entra ID, ServiceNow etc) in Sentinel Workspace
+## Step-03: Create Sentinel Workspace in `Sentinel-RG`
 
-## Create Analytics Rule (Scheduled/NRT)
+## Step-04: Install Data Connectors (Entra ID, ServiceNow etc) in Sentinel Workspace
+
+## Step-05: Create Analytics Rule (Scheduled/NRT)
 
 - **Rule Query**
 
@@ -16,6 +24,7 @@
 AuditLogs
 | where OperationName == "Add user" or OperationName == "Delete user"
 
+# In order to generate some logs which suffice the above criteria, create/delete atleast one user in entra id
 ```
 
 - **Run query every**: 5 mins
@@ -24,22 +33,30 @@ AuditLogs
 - **Event grouping**: Group all event into single alert
 - **Automated Response**: <no_automated_response_now>
 
-## Create a Playbook with Incident Trigger
+## Step-06: Create a Playbook with Incident Trigger
 
-## Update the Playbook permissions
+- Navigate to **Microsoft Sentinel** >> **Automations** >> Click on **Create** button >> **Playbook with Incident trigger**
+- **Name**
+- **Subscription**
+- **Resource Group**
+- **Region**
+- **Connection**: Connect with Managed Identity
+- **Review and Create**
+
+## Step-07: Update the Playbook permissions
 
 - Navigate to your **Microsoft Sentinel workspace** >> **Settings** >> **Playbook permissions** >> ""Configure Permissions""
 - Choose the resource groups that contain the playbooks you want to give Microsoft Sentinel permissions to run.
 - Click **Apply** button
 
-## Update the Playbook RG permissions (RBAC)
+## Step-08: Update the Playbook RG permissions (RBAC)
 
 - **Azure Security Insights**: Microsoft Sentinel Automation Contributor
 - **Your Azure Role**: Owner (Subscription/RG)
 
 **NOTE**: Fix for "_Saving automation rule 'rule' failed. Error: Caller is missing required playbook triggering permissions on playbook resource_" error
 
-## Update the `Managed Identity permission` with Microsoft Entra ID roles
+## Step-09: Update the `Managed Identity permission` with Microsoft Entra ID roles
 
 - Navigate to your **playbook** >> **Identity** >> Enable the System assigned managed identity.
 - Copy the **ObjectID** and keep it handy.
@@ -52,6 +69,6 @@ AuditLogs
 
 **Note**: Fix for scenario : if you're not getting **Microsoft Entra ID action** in your playbook
 
-## Create an `Automation Rule`
+## Step-10: Create an `Automation Rule`
 
-## Updated the Sentinel Playbook with Entra ID based actions (Update user, Delete user etc.)
+## Step-11: Updated the Sentinel Playbook with Entra ID based actions (Update user, Delete user etc.)
