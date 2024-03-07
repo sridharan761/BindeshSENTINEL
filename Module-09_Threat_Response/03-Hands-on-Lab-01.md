@@ -1,4 +1,4 @@
-# Respond to threats by using playbooks with automation rules in Microsoft Sentinel
+# Lab - Respond to threats by using playbooks with automation rules in Microsoft Sentinel
 
 ## Step-01: Create Resource Group `Sentinel-RG`
 
