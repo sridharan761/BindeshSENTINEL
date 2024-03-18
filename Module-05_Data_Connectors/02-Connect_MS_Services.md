@@ -7,18 +7,27 @@
 - Microsoft Entra ID Protection
 - Azure Activity
 
-## 1. Connect the `Microsoft 365` connector
+### 1. Connect the `Microsoft 365` connector
 
 - The Microsoft 365 (formerly, Office 365) solution for Microsoft Sentinel enables you to ingest operational logs from Microsoft 365 to gain insights into user and admin activity across your collaboration platforms such as Teams, SharePoint and Exchange.
 
-## 2. Connect the `Microsoft Entra ID` connector
+### 2. Connect the `Microsoft Entra ID` connector
 
 - The Microsoft Entra ID solution for Microsoft Sentinel enables you to ingest Microsoft Entra ID Audit, Sign-in, Provisioning, Risk Events and Risky User/Service Principal logs using Diagnostic Settings into Microsoft Sentinel.
 
-## 3. Connect the `Microsoft Entra ID Protection` connector
+### 3. Connect the `Microsoft Entra ID Protection` connector
 
 - The Microsoft Entra ID Protection solution for Microsoft Sentinel allows you to ingest Security alerts reported in Microsoft Entra ID Protection for risky users and events in Microsoft Entra ID.
 
-## 4. Connect the `Azure Activity` connector
+### 4. Connect the `Azure Activity` connector
 
 - The Azure Activity solution for Microsoft Sentinel enables you to ingest Azure Activity Administrative, Security, Service Health, Alert, Recommendation, Policy, Autoscale and Resource Health logs using Diagnostic Settings into Microsoft Sentinel.
+
+## Lab-01: Enable the `Azure Activity connector`
+
+### Description
+
+- This lab demonstrates how to install & enable the Azure Activity data connector.
+- This connector import logs from Azure control plane activities, which lets you track Azure administrative activity within the subscription.
+
+###

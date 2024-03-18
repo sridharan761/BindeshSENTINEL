@@ -1,0 +1,5 @@
+rg_name = "BIN-SENTINEL-RG"
+res_loc = "East US"
+law_name = "BIN-LAW"
+law_sku = "PerGB2018"
+sentinel_dc_aad = "bin-sent-aad-dc"

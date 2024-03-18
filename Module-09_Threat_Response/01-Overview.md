@@ -1,4 +1,4 @@
-# Automate threat response with playbooks in Microsoft Sentinel
+# Automate threat response with `playbooks` in Microsoft Sentinel
 
 ## Why Sentinel Playbook?
 

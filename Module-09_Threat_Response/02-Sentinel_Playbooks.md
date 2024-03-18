@@ -1,4 +1,4 @@
-# Azure Logic Apps Basics
+# Automate threat response & SOAR with `playbooks` in Microsoft Sentinel
 
 ## Overview
 
@@ -40,6 +40,12 @@
 - **Microsoft Sentinel Responder role** lets you access an incident in order to run a playbook manually. But to actually run the playbook, you also need...
 - **Microsoft Sentinel Playbook Operator role** lets you run a playbook manually.
 - **Microsoft Sentinel Automation Contributor** allows automation rules to run playbooks. It is not used for any other purpose.
+
+## Automation capabilities in Microsoft Sentinel
+
+## What are Automation Rules?
+
+## What are Sentinel Playbooks?
 
 ## Steps for creating a Playbook
 
