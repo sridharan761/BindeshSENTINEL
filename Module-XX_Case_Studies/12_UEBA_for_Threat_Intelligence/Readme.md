@@ -1,4 +1,4 @@
-# CS-12: Plan, Design and Implement threat intelligence and SOAR solution for `Apache HTTP Servers`
+# CS-12: Configure UEBA in Microsoft Sentinel for Threat Intelligence
 
 ## Scenario and Problem Statement
 
