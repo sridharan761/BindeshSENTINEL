@@ -1,4 +1,4 @@
-# CS-01: Plan, Design and Implement threat intelligence and automated response solutions for `Apache HTTP Servers`
+# CS-06: Plan, Design and Implement threat intelligence and SOAR solution for `Apache HTTP Servers`
 
 ## Scenario and Problem Statement
 
