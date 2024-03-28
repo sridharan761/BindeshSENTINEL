@@ -1,0 +1,147 @@
+"Time","Message","Severity"
+"28-03-2024 02:23","Starting ConfigAwsConnector at: 03/28/2024 02:23:27","Information"
+"28-03-2024 02:23","Log created: C:\Users\ServerX\Downloads\ConfigAwsS3DataConnectorScripts\Logs\AwsS3-03280223.csv","Information"
+"28-03-2024 02:23","To begin you will choose the AWS logs to configure.","Information"
+"28-03-2024 02:23","Checking AWS CLI configuration...","Information"
+"28-03-2024 02:23","Starting CloudTrail data connector configuration script","Verbose"
+"28-03-2024 02:23","This script creates an Assume Role with minimal permissions to grant Azure Sentinel access to your logs in a designated S3 bucket & SQS of your choice, enable CloudTrail Logs, S3 bucket, SQS Queue, and S3 notifications.","Information"
+"28-03-2024 02:23","Notes:","Information"
+"28-03-2024 02:23","* You can find more information about the script in https://github.com/Azure/Azure-Sentinel/blob/master/DataConnectors/AWS-S3/README.md","Information"
+"28-03-2024 02:23","* If a resource name(like: S3, Sqs, Kms) already exists, the script will use the available one and not create a new resource","Information"
+"28-03-2024 02:23","Checking existing OIDC provider","Information"
+"28-03-2024 02:23","Executing Set-RetryAction","Verbose"
+"28-03-2024 02:23","Executing: aws sts get-caller-identity --query 'Account' --output text","Verbose"
+"28-03-2024 02:23","154511248558","Verbose"
+"28-03-2024 02:23","Executing: aws iam get-open-id-connect-provider --open-id-connect-provider-arn 'arn:aws:iam::154511248558:oidc-provider/sts.windows.net/33e01921-4d64-4f8c-a055-5bdaffd5e33d/' 2>&1","Verbose"
+"28-03-2024 02:23","{     ""Url"": ""sts.windows.net/33e01921-4d64-4f8c-a055-5bdaffd5e33d/"",     ""ClientIDList"": [         ""api://1462b192-27f7-4cb9-8523-0f4ecb54b47e""     ],     ""ThumbprintList"": [         ""626d44e704d1ceabe3bf0d53397464ac8080142c""     ],     ""CreateDate"": ""2024-03-27T20:17:07.684000+00:00"",     ""Tags"": [] }","Verbose"
+"28-03-2024 02:23","OIDC provider already exists","Information"
+"28-03-2024 02:23","Approved client IDs: api://1462b192-27f7-4cb9-8523-0f4ecb54b47e","Information"
+"28-03-2024 02:23","Client ID api://1462b192-27f7-4cb9-8523-0f4ecb54b47e is already approved","Information"
+"28-03-2024 02:23","Assume role definition","Information"
+"28-03-2024 02:23","Executing Set-RetryAction","Verbose"
+"28-03-2024 02:23","Executing: aws iam get-role --role-name AzureSentinelRole 2>&1| Out-Null","Verbose"
+"28-03-2024 02:23","Executing: aws iam get-role --role-name AzureSentinelRole","Verbose"
+"28-03-2024 02:23","arn:aws:iam::154511248558:role/AzureSentinelRole","Verbose"
+"28-03-2024 02:23","Using S3 Bucket name: binsentinellabbucket","Information"
+"28-03-2024 02:23","current region configuration: ap-southeast-1","Verbose"
+"28-03-2024 02:23","Executing: aws s3api head-bucket --bucket binsentinellabbucket 2>&1","Verbose"
+"28-03-2024 02:23","output  2>&1","Verbose"
+"28-03-2024 02:23","error code 0 2>&1","Verbose"
+"28-03-2024 02:23","Executing: (aws sts get-caller-identity | ConvertFrom-Json).Account","Verbose"
+"28-03-2024 02:23","154511248558","Verbose"
+"28-03-2024 02:23","Executing: (aws sts get-caller-identity | ConvertFrom-Json).Account","Verbose"
+"28-03-2024 02:23","154511248558","Verbose"
+"28-03-2024 02:23","Creating SQS queue:","Information"
+"28-03-2024 02:24","Using Sqs name: sentinelnewqueue","Information"
+"28-03-2024 02:24","Executing: aws sqs create-queue --queue-name sentinelnewqueue --tags {\""Operator\"": \""Microsoft_Sentinel_Automation_Script\""} 2>&1","Verbose"
+"28-03-2024 02:24","{     ""QueueUrl"": ""https://sqs.ap-southeast-1.amazonaws.com/154511248558/sentinelnewqueue"" }","Verbose"
+"28-03-2024 02:24","Executing: ((aws sqs get-queue-url --queue-name sentinelnewqueue) | ConvertFrom-Json).QueueUrl","Verbose"
+"28-03-2024 02:24","https://sqs.ap-southeast-1.amazonaws.com/154511248558/sentinelnewqueue","Verbose"
+"28-03-2024 02:24","Executing: (aws sts get-caller-identity | ConvertFrom-Json).Account","Verbose"
+"28-03-2024 02:24","arn:aws:sqs:ap-southeast-1:154511248558:sentinelnewqueue","Verbose"
+"28-03-2024 02:24","Updating the SQS policy to allow S3 notifications, and ARN to read/delete/change visibility of SQS messages and get queue url","Information"
+"28-03-2024 02:24","Changes S3: SQS SendMessage permission to 'binsentinellabbucket' s3 bucket","Information"
+"28-03-2024 02:24","Changes Role ARN: SQS ChangeMessageVisibility, DeleteMessage, ReceiveMessage and GetQueueUrl permissions to 'AzureSentinelRole' rule","Information"
+"28-03-2024 02:24","Executing: aws sqs get-queue-attributes --queue-url https://sqs.ap-southeast-1.amazonaws.com/154511248558/sentinelnewqueue --attribute-names Policy","Verbose"
+"28-03-2024 02:24","No results returned from: aws sqs get-queue-attributes --queue-url https://sqs.ap-southeast-1.amazonaws.com/154511248558/sentinelnewqueue --attribute-names Policy ","Verbose"
+"28-03-2024 02:24","Executing: ((aws organizations describe-account --account-id 154511248558 ) | ConvertFrom-Json -ErrorAction SilentlyContinue).Account.Arn.Split('/')[1]","Verbose"
+"28-03-2024 02:24","Updating the S3 policy to allow Sentinel to read the data.","Information"
+"28-03-2024 02:24","Changes: S3 Get and List permissions to 'AzureSentinelRole' rule","Information"
+"28-03-2024 02:24","Executing: aws s3api get-bucket-policy --bucket binsentinellabbucket 2>&1","Verbose"
+"28-03-2024 02:24","Executing: aws s3api put-bucket-policy --bucket binsentinellabbucket --policy {
+    \""Statement\"":  [
+                      {
+                          \""Sid\"":  \""Allow Arn read access S3 bucket\"",
+                          \""Effect\"":  \""Allow\"",
+                          \""Principal\"":  {
+                                            \""AWS\"":  \""arn:aws:iam::154511248558:role/AzureSentinelRole\""
+                                        },
+                          \""Action\"":  [
+                                         \""s3:GetObject\""
+                                     ],
+                          \""Resource\"":  \""arn:aws:s3:::binsentinellabbucket/*\""
+                      },
+                      {
+                          \""Sid\"":  \""AWSCloudTrailAclCheck20150319\"",
+                          \""Effect\"":  \""Allow\"",
+                          \""Principal\"":  {
+                                            \""Service\"":  \""cloudtrail.amazonaws.com\""
+                                        },
+                          \""Action\"":  \""s3:GetBucketAcl\"",
+                          \""Resource\"":  \""arn:aws:s3:::binsentinellabbucket\""
+                      },
+                      {
+                          \""Sid\"":  \""AWSCloudTrailWrite20150319\"",
+                          \""Effect\"":  \""Allow\"",
+                          \""Principal\"":  {
+                                            \""Service\"":  \""cloudtrail.amazonaws.com\""
+                                        },
+                          \""Action\"":  \""s3:PutObject\"",
+                          \""Resource\"":  \""arn:aws:s3:::binsentinellabbucket/AWSLogs/154511248558/*\"",
+                          \""Condition\"":  {
+                                            \""StringEquals\"":  {
+                                                                 \""s3:x-amz-acl\"":  \""bucket-owner-full-control\""
+                                                             }
+                                        }
+                      },
+                      {
+                          \""Sid\"":  \""AWSCloudTrailWrite20150319\"",
+                          \""Effect\"":  \""Allow\"",
+                          \""Principal\"":  {
+                                            \""Service\"":  [
+                                                            \""cloudtrail.amazonaws.com\""
+                                                        ]
+                                        },
+                          \""Action\"":  \""s3:PutObject\"",
+                          \""Resource\"":  \""arn:aws:s3:::binsentinellabbucket/AWSLogs/o-lorc96tacf/*\"",
+                          \""Condition\"":  {
+                                            \""StringEquals\"":  {
+                                                                 \""s3:x-amz-acl\"":  \""bucket-owner-full-control\""
+                                                             }
+                                        }
+                      }
+                  ]
+} | Out-Null","Verbose"
+"28-03-2024 02:24","Enabling S3 event notifications (for *.gz file)","Information"
+"28-03-2024 02:25","Using event notification name: sentinelnotification","Information"
+"28-03-2024 02:25","Event notificaion prefix definition, to Limit the notifications to objects with key starting with specified characters.","Information"
+"28-03-2024 02:25","Using event notification prefix: test","Information"
+"28-03-2024 02:25","Executing: aws s3api get-bucket-notification-configuration --bucket binsentinellabbucket","Verbose"
+"28-03-2024 02:25","Executing: aws s3api put-bucket-notification-configuration --bucket binsentinellabbucket --notification-configuration 
+	{
+		\""QueueConfigurations\"": [
+				{
+				\""Id\"":\""sentinelnotification\"",
+				\""QueueArn\"": \""arn:aws:sqs:ap-southeast-1:154511248558:sentinelnewqueue\"",
+				\""Events\"": [\""s3:ObjectCreated:*\""],
+				\""Filter\"": {
+					\""Key\"": {
+					\""FilterRules\"": [
+						{
+						\""Name\"": \""prefix\"",
+						\""Value\"": \""test\""
+						}
+						,{
+						\""Name\"": \""suffix\"",
+						\""Value\"": \"".gz\""
+						}
+					]
+					}
+				}
+				}
+			]
+	} 2>&1","Verbose"
+"28-03-2024 02:25","CloudTrail definition","Information"
+"28-03-2024 02:25","Using CloudTrail name: sentinellogs","Information"
+"28-03-2024 02:25","Executing: aws cloudtrail get-trail --name sentinellogs 2>&1| Out-Null","Verbose"
+"28-03-2024 02:25","Executing: aws cloudtrail create-trail --name sentinellogs --s3-bucket-name binsentinellabbucket --tags-list [{\""Key\"": \""Operator\"", \""Value\"": \""Microsoft_Sentinel_Automation_Script\""}] 2>&1","Verbose"
+"28-03-2024 02:25","{     ""Name"": ""sentinellogs"",     ""S3BucketName"": ""binsentinellabbucket"",     ""IncludeGlobalServiceEvents"": true,     ""IsMultiRegionTrail"": false,     ""TrailARN"": ""arn:aws:cloudtrail:ap-southeast-1:154511248558:trail/sentinellogs"",     ""LogFileValidationEnabled"": false,     ""IsOrganizationTrail"": false }","Verbose"
+"28-03-2024 02:25","sentinellogs trail created successfully","Information"
+"28-03-2024 02:25","Executing: aws cloudtrail put-event-selectors --trail-name sentinellogs --event-selectors '[{'DataResources': [{'Type':'AWS::S3::Object', 'Values': ['arn:aws:s3:::']}]}]' | Out-Null","Verbose"
+"28-03-2024 02:25","Executing: aws cloudtrail update-trail --name sentinellogs --is-multi-region-trail | Out-Null","Verbose"
+"28-03-2024 02:25","Executing: aws cloudtrail update-trail --name sentinellogs --is-organization-trail | Out-Null","Verbose"
+"28-03-2024 02:25","Executing: aws cloudtrail start-logging  --name sentinellogs","Verbose"
+"28-03-2024 02:25","Use the values below to configure the Amazon Web Service S3 data connector in the Azure Sentinel portal.","Information"
+"28-03-2024 02:25","Role Arn: arn:aws:iam::154511248558:role/AzureSentinelRole","Information"
+"28-03-2024 02:25","Sqs Url: https://sqs.ap-southeast-1.amazonaws.com/154511248558/sentinelnewqueue","Information"
+"28-03-2024 02:25","Destination Table: AWSCloudTrail","Information"

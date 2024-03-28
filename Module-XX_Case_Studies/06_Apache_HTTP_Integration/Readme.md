@@ -48,3 +48,5 @@
 ### Step-12: Prepare Automated response actions to remediate the issue
 
 ### Step-13: Automate Threat reponse using Azure Playbooks (Logic Apps)
+
+## [References](https://learn.microsoft.com/en-us/azure/sentinel/data-connectors/apache-http-server)
