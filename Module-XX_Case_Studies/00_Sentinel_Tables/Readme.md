@@ -48,6 +48,11 @@ AzureActivity
     and OperationNameValue == "Microsoft.Authorization/roleAssignments/write"
     and ActivityStatus == "Succeeded"
 
+# Logs related to Azure VM Deletes
+ AzureActivity
+  | where OperationNameValue == "MICROSOFT.COMPUTE/VIRTUALMACHINES/DELETE"
+  | where ActivityStatusValue == "Success"
+
 ```
 
 ## 04 OfficeActivity
