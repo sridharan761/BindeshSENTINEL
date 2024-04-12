@@ -1,27 +1,52 @@
 # Practice Test - SC-200 Exam
 
-![q1](images/q1.png)
-![q2](images/q2.png)
-![q3](images/q3.png)
-![q4](images/q4.png)
-![q5](images/q5.png)
-![q6](images/q6.png)
-![q7](images/q7.png)
-![q8](images/q8.png)
-![q9](images/q9.png)
-![q10](images/q10.png)
-![q11](images/q11.png)
-![q12](images/q12.png)
-![q13](images/q13.png)
-![q14](images/q14.png)
-![q15](images/q15.png)
-![q16](images/q16.png)
-![q17](images/q17.png)
-![q18](images/q18.png)
-![q19](images/q19.png)
-![q20](images/q20.png)
-![q21](images/q21.png)
-![q22](images/q22.png)
-![q23](images/q23.png)
-![q24](images/q24.png)
-![q25](images/q25.png)
+<img src="images/q1.png" width="700" height="700" />
+<img src="images/q2.png" width="700" height="700" />
+<img src="images/q3.png" width="700" height="700" />
+<img src="images/q4.png" width="700" height="700" />
+<img src="images/q5.png" width="700" height="700" />
+<img src="images/q6.png" width="700" height="700" />
+<img src="images/q7.png" width="700" height="700" />
+<img src="images/q8.png" width="700" height="700" />
+<img src="images/q9.png" width="700" height="700" />
+<img src="images/q10.png" width="700" height="700" />
+<img src="images/q11.png" width="700" height="700" />
+<img src="images/q12.png" width="700" height="700" />
+<img src="images/q13.png" width="700" height="700" />
+<img src="images/q14.png" width="700" height="700" />
+<img src="images/q15.png" width="700" height="700" />
+<img src="images/q16.png" width="700" height="700" />
+<img src="images/q17.png" width="700" height="700" />
+<img src="images/q18.png" width="700" height="700" />
+<img src="images/q19.png" width="700" height="700" />
+<img src="images/q20.png" width="700" height="700" />
+<img src="images/q21.png" width="700" height="700" />
+<img src="images/q22.png" width="700" height="700" />
+<img src="images/q23.png" width="700" height="700" />
+<img src="images/q24.png" width="700" height="700" />
+<img src="images/q25.png" width="700" height="700" />
+<img src="images/q26.png" width="700" height="700" />
+<img src="images/q27.png" width="700" height="700" />
+<img src="images/q28.png" width="700" height="700" />
+<img src="images/q29.png" width="700" height="700" />
+<img src="images/q30.png" width="700" height="700" />
+<img src="images/q31.png" width="700" height="700" />
+<img src="images/q32.png" width="700" height="700" />
+<img src="images/q33.png" width="700" height="700" />
+<img src="images/q34.png" width="700" height="700" />
+<img src="images/q35.png" width="700" height="700" />
+<img src="images/q36.png" width="700" height="700" />
+<img src="images/q37.png" width="700" height="700" />
+<img src="images/q38.png" width="700" height="700" />
+<img src="images/q39.png" width="700" height="700" />
+<img src="images/q40.png" width="700" height="700" />
+<img src="images/q41.png" width="700" height="700" />
+<img src="images/q42.png" width="700" height="700" />
+<img src="images/q43.png" width="700" height="700" />
+<img src="images/q44.png" width="700" height="700" />
+<img src="images/q45.png" width="700" height="700" />
+<img src="images/q46.png" width="700" height="700" />
+<img src="images/q47.png" width="700" height="700" />
+<img src="images/q48.png" width="700" height="700" />
+<img src="images/q49.png" width="700" height="700" />
+<img src="images/q50.png" width="700" height="700" />
