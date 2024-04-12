@@ -8,6 +8,8 @@
   - Advanced dashboard navigations, and more.
 - You can also edit and customize the visualizations to meet needs using simple dropdown menus.
 
+## [Commonly used Microsoft Sentinel Workbooks](https://learn.microsoft.com/en-us/azure/sentinel/top-workbooks)
+
 ## Lab-01: View existing Sentinel Workbooks Templates
 
 - **Permission Required**: Atleast **Reader** role on the resource group to which the Microsoft Sentinel workspace belongs.
@@ -19,11 +21,19 @@
 
 ## Lab-02: View and make changes to the `Data Collection Health Monitoring` Workbook
 
-- **Permissions required**: **Workbook reader** or **Workbook contributor** permissions on the resource group of the Microsoft Sentinel workspace.
+- Prerequisites
+
+  - **Permissions required**:
+    - **Workbook reader** or
+    - **Workbook contributor** permissions on the resource group of the Microsoft Sentinel workspace.
+  - **Data connector**: Data collection health monitoring
+
 - Follow the steps below to view and make changes to the Data
   Collection Health Monitoring Workbook:
+
   - Sign-in to Azure Portal as a _Reader_ or _Contributor_ on the resource group to which the Microsoft Sentinel workspace belongs.
-  - **Microsoft Sentinel** >> **Workbooks** >> and search for **Data Collection Health Monitoring** workbook >> **View Template**
+  - **Microsoft Sentinel** >> **Workbooks** >> and search for **Data Collection Health Monitoring** workbook >> **View Template**.
+
   - If your environment has multiple workspaces, this Workbook will retrieve information about the following workspace items:
     - **Resource group**
     - **Geolocation**
@@ -35,3 +45,27 @@
   - You can also use the **Data Collection Anomalies** tab to detect potential anomalies in the data collection process by table and data source.
 
 ## Lab-03: Creating custom `Sentinel Workbooks`
+
+- Sign-in to Azure portal.
+- **Microsoft Sentinel** >> under **Threat management** section >> select **Workbooks** >> **Add workbook**.
+- To edit the workbook, select **Edit**, and then add text, queries, and parameters as necessary.
+- **Workbook to Visualize changes in the volume and severity of Security Alerts**. Click the **Done Editing** button to finish.
+- Now add a pie chart displaying the **Security Events** that have occurred over the last six months, sorted by severity.
+- To do this, select **Edit** at the top of the Workbook and scroll to the right of the screen. Now, select the second Edit button and add the following query:
+
+```
+You can now test by clicking the **Run Query** button.
+
+```
+
+- You can now test by clicking the **Run Query** button >> **Done Editing**
+- Now, **create a new time chart displaying changes in the number of security alerts by severity over the last year**.
+- Click the **Edit** button, and then click the **Add** button, followed by the **Add Query** option:
+
+```
+SecurityAlert
+| where TimeGenerated >= ago(365d)
+| summarize Count=count() by bin(TimeGenerated, 1d), AlertSeverity
+```
+
+- From the **Visualization** dropdown menu, select **Time Chart** and click the **Run Query** button >> **Done Editing**.
