@@ -4,7 +4,7 @@
 
 - You are a Security Operations Analyst working at a company that implemented Microsoft Sentinel.
 - As part of the security team, you have been asked to join a company meeting related to security concern.
-- You already created Scheduled and Microsoft Security Analytics rules.
+- You already created scheduled and Microsoft Security Analytics rules.
 - You need to **configure Microsoft Sentinel to perform Entity Behavior Analytics (UEBA)** to discover anomalies and provide entity analytic pages.
 
 ## Technical Requirements needed to implement this solution

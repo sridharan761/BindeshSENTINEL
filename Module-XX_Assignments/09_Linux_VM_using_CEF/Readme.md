@@ -1,7 +1,5 @@
 # Connect Linux hosts to Microsoft Sentinel using data connectors
 
-##
-
 - You are a Security Operations Analyst working at a company that implemented Microsoft Sentinel.
 - You have to figure out how to connect log data from Linux virtual machines using the Common Event Formatting (CEF) via _Legacy Agent_ and _Syslog connectors_.
 
